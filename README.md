@@ -75,4 +75,31 @@ if __name__ == "__main__":
 ```
 
 
+## v0.3
+
+```
+$ git checkout v0.3
+```
+
+加入蓝图功能，代码结构如下：
+
+```
+flask-demos
+├── README.md
+├── app.py
+├── book
+│   ├── __init__.py
+│   └── book.py
+├── movie
+│   ├── __init__.py
+│   └── movie.py
+└── templates
+    ├── 404.html
+    ├── book.html
+    ├── layout.html
+    └── movie.html
+```
+
+
+通过 `python app.py` 运行。
 
