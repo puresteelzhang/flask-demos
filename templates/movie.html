@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if movies %}
+    {% for movie in movies %}
+        <ul>
+            <li> {{ movie }} </li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <p> The movie doesn't exists! </p>
+{% endif %}
+
+
+<form method="post" action="{{ url_for('movie.index') }}">
+    <input id="title" name="title" placeholder="add movie" type="text">
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
