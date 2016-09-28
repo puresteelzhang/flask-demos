@@ -1,41 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request, redirect, url_for
+from flask import Flask, render_template
+from book import book_bp
+from movie import movie_bp
 
 app = Flask(__name__)
-app.secret_key = 'some secret key'
+app.secret_key = 'The quick brown fox jumps over the lazy dog'
 
-books = ['the first book', 'the second book', 'the third book']
-
-
-@app.route("/")
-def index():
-    render_string = '<ul>'
-
-    for book in books:
-        render_string += '<li>' + book + '</li>'
-
-    render_string += '</ul>'
-
-    return render_string
+app.register_blueprint(book_bp)
+app.register_blueprint(movie_bp)
 
 
-@app.route("/book", methods=['POST', 'GET'])
-def book():
-    _form = request.form
-
-    if request.method == 'POST':
-        title = _form["title"]
-        books.append(title)
-        return redirect(url_for('index'))
-
-    return '''
-        <form name="book" action="/book" method="post">
-            <input id="title" name="title" type="text" placeholder="add book">
-            <button type="submit">Submit</button>
-        </form>
-        '''
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5200, debug=True)
