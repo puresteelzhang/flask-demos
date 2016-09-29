@@ -103,3 +103,19 @@ flask-demos
 
 通过 `python app.py` 运行。
 
+## v0.4
+
+```
+$ git checkout v0.3
+```
+
+加入密码和 token 认证，只有登录成功的用户才可以提交书籍，其中，token 认证可使用命令行 curl 测试。
+
+```shell
+# 密码认证
+curl -i -u ethan:6667 -d "title=mybook" -X POST http://127.0.0.1:5200/book
+
+# token 认证
+curl -i -u token:x -d "title=threee" -X POST http://127.0.0.1:5200/book
+```
+
