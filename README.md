@@ -119,3 +119,39 @@ curl -i -u ethan:6667 -d "title=mybook" -X POST http://127.0.0.1:5200/book
 curl -i -u token:x -d "title=threee" -X POST http://127.0.0.1:5200/book
 ```
 
+
+## v0.5
+
+```
+$ git checkout v0.5
+```
+
+采用工厂方法 `creat_app()` 创建 `app` 对象。
+
+代码结构如下：
+
+```
+.
+├── app.py
+├── book
+│   ├── __init__.py
+│   └── book.py
+├── configs.py
+├── movie
+│   ├── __init__.py
+│   └── movie.py
+├── requirements.txt
+├── run.py
+└── templates
+    ├── 404.html
+    ├── book.html
+    ├── layout.html
+    └── movie.html
+```
+
+运行：
+
+```
+$ python run.py
+```
+
