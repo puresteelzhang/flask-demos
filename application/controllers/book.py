@@ -9,7 +9,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
 
 
 book_bp = Blueprint(
-    'book', 
+    'book',
     __name__,
     template_folder='../templates',
 )

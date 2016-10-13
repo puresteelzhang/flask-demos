@@ -13,7 +13,7 @@ class Config(object):
 
     # Email config
     MAIL_SERVER = 'smtp.qq.com'
-    MAIL_PORT = 465
+    MAIL_PORT = 25
     MAIL_USE_SSL = False
     MAIL_USERNAME = ''
     MAIL_PASSWORD = ''
@@ -25,10 +25,12 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'todo.sqlite')  # NOQA
 
 
 class ProductionConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'todo.sqlite')  # NOQA
+
 
 config = {
     'default': DevelopmentConfig,
