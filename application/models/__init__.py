@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from model import Book
+from model import Book, User
 
-__all__ = ['Book']
+__all__ = ['Book', 'User']
