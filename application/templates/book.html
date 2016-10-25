@@ -1,21 +1,24 @@
-{% extends "layout.html" %}
+{% extends 'base.html' %}
 
-{% block body %}
+{% block inside_row %}
+    {% if books %}
+        <p>目前现有的书籍</p>
+        {% for book in books %}
+            <ul>
+                <li> {{ book.title }} </li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p> 暂时没有书籍,请先添加书籍</p>
+    {% endif %}
 
-{% if books %}
-    {% for book in books %}
-        <ul>
-            <li> {{ book }} </li>
-        </ul>
-    {% endfor %}
-{% else %}
-    <p> The book doesn't exists! </p>
-{% endif %}
-
-
-<form method="post" action="{{ url_for('book.add_book') }}">
-    <input id="title" name="title" placeholder="add book" type="text">
-    <button type="submit">Submit</button>
-</form>
-
+    {% if current_user.is_authenticated %}
+		<form class="form" action="{{ url_for('book.show_book') }}" method="post">
+			<input id="title" name="title" placeholder="add book" type="text">
+            <button type="submit">Submit</button>
+		</form>
+    {% else %}
+		<div class="alert alert-info">添加书籍前请先登录</div>
+		<a href="{{ url_for('user.signin', next=request.url) }}" class="btn btn-info">登录</a>
+    {% endif %}
 {% endblock %}
