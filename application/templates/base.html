@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=360, initial-scale=0.75 user-scalable=no">
+        {% block header_ext %}
+        {% endblock %}
+        <title>
+            {% block title %}{% if title %}{{ title }}{% endif %}DEMO{% endblock %}
+        </title>
+
+        <!-- Bootstrap -->
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('book.index') }}">首页</a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('book.show_book') }}">读书</a></li>
+                        <li><a href="{{ url_for('movie.index') }}">电影</a></li>
+                    </ul>
+
+                    {% if current_user.is_authenticated %}
+                    <div class="navbar-form navbar-right">
+                        <a class="btn btn-info" id="new-btn" href="{{ url_for('user.signout') }}">退出</a>
+                    </div>
+                    {% else %}
+                    <div class="navbar-form navbar-right">
+                        <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                          <button type="button" class="btn btn-info btn-primary dropdown-toggle" data-toggle="dropdown">
+                            登录  <b class="caret"></b>
+                          </button>
+                            <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('user.signin') }}">登录</a></li>
+                            <li><a href="{{ url_for('user.signup') }}">注册?</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div><!--end nav container-->
+        </nav><!--end nav-->
+
+        <div id="wrap">
+            <div class="container" id="main">
+                <div class="row">
+                    {% block inside_row %}
+                    {% endblock %}
+                </div><!--end outter row-->
+            </div><!--end main-->
+        </div><!--end wrap-->
+
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        {% block footer_ext %}{% endblock %}
+    </body>
+</html>
