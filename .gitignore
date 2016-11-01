@@ -2,4 +2,3 @@
 .idea/*
 *.py[cod]
 *pycache*
-*cache*
